@@ -42,6 +42,7 @@ dependencies {
 
 
 
+  //테스트 환경에서 @Log4j2 기능을 활용시 필요한 라이브러리
   testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

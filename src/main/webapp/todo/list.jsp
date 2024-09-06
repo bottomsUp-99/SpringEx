@@ -7,27 +7,34 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
-    <title>Todo List Page</title>
+    <title>Todo List</title>
 </head>
 <body>
-   <h1>Todo List page</h1>
-<%--      ${dtolist} --%>
-<%--${dtolist[0].tno} --- ${dtolist[0].title} --- ${dtolist[0].dueDate}
-<h3>${1+2+3}</h3>
-<h3>${"AAA" += "BBB"}</h3>
-<H3>${"AAA".equals("aaa")}</H3>--%>
+<h1>Todo List</h1>
+
+<h2>${appName}</h2>
+<h2>${loginInfo}</h2>
+<h3>${loginInfo.mname}</h3>
+
 
 <ul>
-    <c:forEach var="dto"  items="${dtolist}">
-        <li>${dto}</li>
+    <c:forEach items="${dtoList}" var="dto">
+        <li>
 
+            <span><a href="/todo/read?tno=${dto.tno}">${dto.tno}</a></span>
+            <span>${dto.title}</span>
+            <span>${dto.dueDate}</span>
+            <span>${dto.finished? "DONE": "NOT YET"}</span>
+        </li>
     </c:forEach>
-
 </ul>
 
+<form action="/logout" method="post">
+    <button>LOGOUT</button>
+</form>
 
 </body>
-
 </html>

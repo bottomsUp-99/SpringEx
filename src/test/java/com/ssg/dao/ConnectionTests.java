@@ -21,7 +21,7 @@ public class ConnectionTests {
 
           Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ssg?serverTimezone=UTC","webuser","webuser1234");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ssg?serverTimezone=UTC","root","seungjoon0324^^");
 
         Assertions.assertNotNull(connection);
         connection.close();

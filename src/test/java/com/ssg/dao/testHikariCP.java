@@ -15,8 +15,8 @@ public class testHikariCP {
 
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         config.setJdbcUrl("jdbc:mysql://localhost:3306/ssg?serverTimezone=UTC");
-        config.setUsername("webuser");
-        config.setPassword("webuser1234");
+        config.setUsername("root");
+        config.setPassword("seungjoon0324^^");
         config.addDataSourceProperty("cachePrespStmts","true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit","2048");
