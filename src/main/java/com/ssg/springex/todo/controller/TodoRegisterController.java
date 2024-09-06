@@ -1,4 +1,4 @@
-package com.ssg.springex.todo;
+package com.ssg.springex.todo.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

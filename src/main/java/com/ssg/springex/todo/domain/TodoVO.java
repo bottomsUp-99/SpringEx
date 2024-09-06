@@ -1,14 +1,15 @@
 package com.ssg.springex.todo.domain;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Getter //getter, setter, toString, equals, hashCode 컴파일할때 자동 생성해준다.
 @Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class TodoVO {
 
     private Long tno;

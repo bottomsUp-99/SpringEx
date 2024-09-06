@@ -1,0 +1,13 @@
+1. JDBC 연동(HikariCP Library) - Connection Pool
+    DAO 구성하고 서비스 객체와 컨트롤러 객체를 연동해서 실행가능한 Todo Service 구현
+
+    3tier ==> 프리젠테이션 / 비즈니스 / 데이터액세스 ==> 웹 아키텍트 기본 구조
+
+2. DTO vs VO
+    DTO : 각 레이어에서 저달하고자 하는 데이터를 담는 객체(setter, getter ==> @Date)
+    VO : 읽기 전용 데이터 객체(주로 getter만을 제공)
+
+3. DTO => VO / VO => DTO (VO를 읽기 전용 객체로 사용하기로 설계했기 때문에 변환을 위한 ModelMapper 라이브러리 사용할 것.)
+
+4. ModelMapper 라이브러리 이용할 때 대상 클래스의 생성자를 이용할 수 있도록 생성자 어노테이션을 적용
+   VO와 DTO의 변환 과정은 Service 영역에서

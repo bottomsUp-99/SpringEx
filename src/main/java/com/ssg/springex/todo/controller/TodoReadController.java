@@ -1,4 +1,4 @@
-package com.ssg.springex.todo;
+package com.ssg.springex.todo.controller;
 
 import com.ssg.springex.todo.dto.TodoDTO;
 import com.ssg.springex.todo.service.TodoService;
