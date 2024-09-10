@@ -73,3 +73,15 @@
 
     톰캣 내부의 세션 저장소는 발행된 쿠키(세션 키 & 키에 페어링 된 값)들의 정보를 저장하여 보관하는 세션 저장소를 운영한다. 더 이상 사용하지 않는 것들을 정리하면서 운영한다.
     session-timeout 프로퍼티를 이용하여 정리한다(지정된 시간보다 오래된 값들은 주기적 검사를 진행하여 삭제) 톰캣의 경우 기본값 30분
+
+10. 톰캣과 스프링이 연동되는 구조를 완성한 후 웹 어플리케이션에서 필수인 데이터베이스 설정
+    1) build.gradle : // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+                        implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+                        // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+                        implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1' 확인해준다
+    2) root-context.xml 에 HikariCP
+        - HikariConfig 설정
+        - HikariDataSource 초기화
+
+11. MyBatis
+    'Sql Mapping Framework' : SQL의 실행 결과를 객체지향으로 매핑해준다.
