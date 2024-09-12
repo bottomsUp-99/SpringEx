@@ -38,3 +38,58 @@ implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.
     ==> 매퍼 파일들의 위치를 의미하며, resource의 경우 'classpath:' 접두어를 이용하여 인식되는 경로이다.
     mappers 폴터 밑에 폴더가 있어고 관계없도록 ==> '**'
     모든 xml을 의미하는 '*.xml'을 기술해준다.
+
+4. 스프링 WEB MVC 기초
+    스프링프레임워크 - 개발의 생산성과 안정성
+    - 기존의 웹MVC vs 스프링 웹MVC
+    스프링 웹 MVC는 Front-Controller 패턴(웹구조에서 불리어짐 / facade 패턴)을 이용해서 모든 흐름의 사전/사후 처리를 가능하도록 설계되어 있다.
+    오ㅓ노테이션을 적극적으로 활용하여 최소한의 코드로 많은 처리를 가능하도록 설계되어 있다.
+    HttpServletRequest/HttpServletResponse를 이용핮 않아도 될 만큼 추상화된 방식으로 개발이 가능하다.
+
+    facade pattern : 모든 흐름이 하나의 객체를 통해서 진행된다.
+
+    역할 : Front-Controller를 이용하면 모든 요청이 반드시 하나의 객체를 지나서 처리되기 때문에 모든 공통적인 처리를 프론트 컨트돌러에서 처리 할 수 있다.
+
+    스프링MVC에서는 DispatcherServlet 객체가 프론트 컨트롤 역할을 수행한다.
+
+    사전/사후 처리에 대한 처리를 하게 되면 중간에 매번 다른 처리를 하는 부분만 별도로 빼서 구조를 만드는데 이를 컨트롤러라고 하며 @Controller 이용해서 처리한다.
+
+    servlet-context.xml
+    <mvc:annotation-driven></mvc:annotation-driven>
+    ==> 어노테이션 기반 스프링 설정으로 처리하겠다.
+    ==> 스프링MVC의 여러 객체들을 자동으로 스프링읜 빈으로 등록하여 사용하겠다.
+
+    <mvc:resources mapping="/resources/**" location="/resources/">
+    ==> 이미지나, html 파일과 같은 정적 파일의 경로를 지정한다.
+    ==> location="/resources/"의 의미는 경로로 들어오는 요청은 정적 파일을 요구하는 것. 그래서 스프링 MVC는 처리하지 않는다.
+
+    </mvc:resources>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    InternalResourceViewResolver 클래스로 빈이 설정됨.
+    InternalResourceViewResolver의 용도는 스프링MVC에서 제공하는 뷰를 어떻게 결정하는지에 대한 설정 담당하는 빈이다.
+    prefix, suffix의 내용
+
+    스프링 웹 MVC의 특징
+    1. 상속이나 인터페이스를 구현하는 방식을 사용하지 않고 어노테이션만으로 처리 가능
+    2. 오버리읃 없이 필요한 메서드를 정의
+    3. 메서드의 파라미터를 기본 자료형이나 객체 자료형을 마음대로 지정 가능
+    4-1. 메서드의 리턴타입도 void, String, 객체 등 다양한 타입을 사용가능 함
+    4-2. @RequestMapping @GetMapping @RequestParam
+        스프링 컨트롤러에서 가장 많이 사용하는 어노테이션이다.
+        '특정한 경로의 요청을 지정'하기 위한 어노테이션
+        @RequestMapping은 컨트롤러의 선언부와 컨트롤러의 메서드에서 사용할 수 있다.
+
+        method라는 속성을 이용해서 GET/POST 방식을 구분해서 처리했다. 하지만 스프링4 이후에는 @GetMapping @PostMapping 어노테이션이 추가되면서 GET과 POST를 구분해서 처리 가능하다.
+
+    4-3. Formatter를 이용한 파라미터의 커스텀 처리
+        기본적으로 HTTP 는 문자열로 데이터를 전달한다.
+        컨트롤러는 문자열을 기준으로 특정한 클래스의 객체로 처리하는 작업을 진행한다.
+        날짜 관련 타입의 데이터 처리 문제가 개발자 입장에서 제일 골치아프데이~~
+
+        브라우저에서 '2024-09-10' 형태의 문자열을 Date 타입이나 LocalDate, LocalDateTime 변환하는 작업을 해야하는데 파라미터 수집 시 많은 에러가 발생한다.
+
+        ==> 해결방법은 바로 Formatter 클래스를 작성하여 해결한다. 문자열을 포맷을 이용해서 특정한 객체로 변환하는 기능(클래스) 만들어 사용하자
